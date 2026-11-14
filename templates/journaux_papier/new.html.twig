@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New JournauxPapier{% endblock %}
+
+{% block body %}
+    <h1>Create new JournauxPapier</h1>
+
+    {{ include('journaux_papier/_form.html.twig') }}
+
+    <a href="{{ path('app_journaux_papier_index') }}">back to list</a>
+{% endblock %}

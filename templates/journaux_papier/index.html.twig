@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JournauxPapier index{% endblock %}
+
+{% block body %}
+    <h1>JournauxPapier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Auteur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for journaux_papier in journaux_papiers %}
+            <tr>
+                <td>{{ journaux_papier.id }}</td>
+                <td>{{ journaux_papier.nom }}</td>
+                <td>{{ journaux_papier.auteur }}</td>
+                <td>
+                    <a href="{{ path('app_journaux_papier_show', {'id': journaux_papier.id}) }}">show</a>
+                    <a href="{{ path('app_journaux_papier_edit', {'id': journaux_papier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_journaux_papier_new') }}">Create new</a>
+{% endblock %}

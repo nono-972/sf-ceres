@@ -7,7 +7,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
- image_directory: '%kernel.project_dir%/public/uploads/images'
+ image_directory: '%kernel.project_dir%/public/uploads/image'
+ video_directory: '%kernel.project_dir%/public/uploads/video'
 
 
 services:
@@ -27,3 +28,6 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%image_directory%'
+    App\Service\VideoUploader:
+        arguments:
+            $targetDirectory: '%video_directory%'

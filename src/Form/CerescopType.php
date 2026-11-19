@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Cerescop;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,13 +17,16 @@ class CerescopType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('nom', TextType::class,[
+                'label' => 'Titre de l\'évènement',
+            ])
             ->add('image', FileType::class,[
-                'label' => 'Image de la recette',
+                'label' => 'Image de l\'évènement',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new File(
-                        maxSize : '16000k',
+                        maxSize : '5M',
                         maxSizeMessage : 'Taille de fichier trop grande',
                         mimeTypes: [
                             'image/jpeg',
@@ -35,29 +40,30 @@ class CerescopType extends AbstractType
                 ]
             ])
             ->add('video' , FileType::class,[
-                'label' => 'Vidéo de la recette',
+                'label' => 'Vidéo de l\'évènement',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new File(
-                        maxSize : '16000k',
+                        maxSize :'5M',
                         maxSizeMessage : 'Taille de fichier trop grande',
                         mimeTypes: [
                             'video/mp4',
                             'video/webm',
-                            'video/ogg',
+                            'video/mkv',
                             'video/avi',
-                            'video/mpeg',
+                            'video/mov',
                         ],
-                        mimeTypesMessage: "Extension de fichier invalide"
+                        mimeTypesMessage: "Extension de fichier invalide",
                     )
                 ]
             ])
-            ->add('nom', TextType::class,[
-                'label' => 'Nom de la recette',
+            ->add('description', TextareaType::class,[
+                'label' => 'Description de la vidéo',
             ])
-            ->add('description')
-            ->add('date')
+            ->add('date', DateType::class,[
+                'label' => 'Date de l\'évènement',
+            ])
         ;
     }
 

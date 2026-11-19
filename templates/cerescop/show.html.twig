@@ -13,10 +13,21 @@
             </tr>
             <tr>
                 <th>Image</th>
+                <td><img src="{{ asset('uploads/image/' ~ cerescop.image) }}" alt="{{ cerescop.nom }}" width="200"></td>
                 <td>{{ cerescop.image }}</td>
             </tr>
             <tr>
                 <th>Video</th>
+                <td>
+                    {% if cerescop.video %}
+                        <video width="320" height="240" controls>
+                            <source src="{{ asset('uploads/video/' ~ cerescop.video) }}" type="video/mp4 video/mkv video/avi video/webm" >
+                            Your browser does not support the video tag.
+                        </video>
+                    {% else %}
+                        No video available
+                    {% endif %}
+                </td>
                 <td>{{ cerescop.video }}</td>
             </tr>
             <tr>
@@ -29,7 +40,7 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{{ cerescop.date ? cerescop.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cerescop.date ? cerescop.date|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>
